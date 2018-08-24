@@ -1,0 +1,46 @@
+#%RAML 1.0
+baseUri: http://localhost:8081/vuelos 
+version: 1.0
+title: vuelos
+
+/vuelos:
+  description: Busca todos los vuelos de la aerolinea Delta
+  get:
+    description: regresa la informacion de todos los vuelos
+    responses:
+      200:
+        body:
+          application/json:
+            example: {
+              "message":"todos los vuelos"
+            }
+      400:
+        body:
+          application/json:
+            example: {
+              "message":"No se encontraron vuelos"
+            }
+            
+  /destino:
+    description: busca todos los vuelos por destino
+    get:
+      queryParameters:
+        destino:
+              description: ingresado para verificar el destino
+              type: string
+              enum: [PDX,LAX,CLE]
+              required: false
+      responses:
+        200:
+          body:
+            application/json:
+              example:  {
+                  "message": "vuelos por destino"
+              }
+        400:
+          body:
+            application/json:
+              example: {
+                "message": "error al buscal el destino"
+              }  
+              
